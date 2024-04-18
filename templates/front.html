@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firewatch</title>
+    <style>
+        body {
+            background-image: url('static/images/FireAndSmoke.gif'); /* Updated path to GIF file */
+            background-size: cover;
+            background-repeat: no-repeat;
+            color: gold;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 30px;
+            font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .upload-btn-container {
+            display: none; /* Initially hide the upload button container */
+        }
+
+        button {
+            margin: 10px;
+            padding: 15px 30px;
+            background-color: gold;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
+            box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ffd700;
+            transform: translateY(-3px);
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .quote-container {
+            margin-top: 30px;
+            font-style: italic;
+            text-align: center;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Firewatch</h1>
+        <div class="button-container">
+            <form action="/webcam" method="post">
+                <button type="submit">Detect Using Webcam</button>
+            </form>
+            <button onclick="toggleUpload('video-upload')">Detect in a Video</button>
+            <div id="video-upload" class="upload-btn-container">
+                <form action="/video" method="post" enctype="multipart/form-data">
+                    <input type="file" name="video" accept="video/*">
+                    <button type="submit">Upload Video</button>
+                </form>
+            </div>
+            <button onclick="toggleUpload('image-upload')">Detect in an Image</button>
+            <div id="image-upload" class="upload-btn-container">
+                <form action="/image" method="post" enctype="multipart/form-data">
+                    <input type="file" name="image" accept="image/*">
+                    <button type="submit">Upload Image</button>
+                </form>
+            </div>
+        </div>
+        <div class="quote-container">
+            <p>"Every fire alarm is a heartbeat, every extinguished flame a saved life."</p>
+            <p>"In the ashes of devastation, we find the importance of prevention."</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleUpload(id) {
+            var uploadContainer = document.getElementById(id);
+            if (uploadContainer.style.display === "none") {
+                uploadContainer.style.display = "block";
+            } else {
+                uploadContainer.style.display = "none";
+            }
+        }
+    </script>
+</body>
+
+</html>
